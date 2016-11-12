@@ -18,4 +18,8 @@ public class StarDAO {
     public List<Star> findAll(){
         return em.createQuery("select s from Star s").getResultList();
     }
+
+    public Star find(int id) {
+        return em.find(Star.class, id);
+    }
 }

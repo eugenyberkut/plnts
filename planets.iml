@@ -17,6 +17,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" value="31738bbc-a1c7-4a29-a41f-ac64fdd8fe81" />
+          <factory-entry name="WebAppPU" value="31738bbc-a1c7-4a29-a41f-ac64fdd8fe81" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>

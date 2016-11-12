@@ -1,6 +1,7 @@
 package planets.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -10,12 +11,11 @@ import java.util.Objects;
 public class Star {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Basic
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String name;
 
     public Star(String name) {
@@ -53,5 +53,16 @@ public class Star {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @OneToMany(mappedBy = "star")
+    private Collection<Planet> planets;
+
+    public Collection<Planet> getPlanets() {
+        return planets;
+    }
+
+    public void setPlanets(Collection<Planet> planets) {
+        this.planets = planets;
     }
 }

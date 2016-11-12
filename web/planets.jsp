@@ -2,25 +2,28 @@
 <%--
   Created by IntelliJ IDEA.
   User: yevge
-  Date: 25.10.2016
-  Time: 12:54
+  Date: 12.11.2016
+  Time: 14:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Stars</title>
+    <title>Планеты</title>
     <link href="styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <h1>Звезда: ${star.name}</h1>
     <table>
         <thead>
-        <tr><th>id</th><th>Название</th><th>Планеты</th></tr>
+        <tr><th>название</th><th>радиус</th><th>атм</th></tr>
         </thead>
         <tbody>
-        <c:forEach items="${stars}" var="star">
-            <tr><td>${star.id}</td><td>${star.name}</td><td><a href="planets.html?sid=${star.id}">показать</a></td></tr>
-        </c:forEach>
+            <c:forEach items="${star.planets}" var="planet">
+                <tr>
+                    <td>${planet.name}</td><td>${planet.radius}</td><td>${planet.atm}</td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 </body>

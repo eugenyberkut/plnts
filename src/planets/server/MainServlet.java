@@ -1,6 +1,7 @@
 package planets.server;
 
 import planets.dao.StarDAO;
+import planets.model.Star;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,7 +24,16 @@ public class MainServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("stars", starDAO.findAll());
-        request.getRequestDispatcher("/stars.jsp").forward(request,response);
+        if (request.getServletPath().endsWith("/stars.html")) {
+            request.setAttribute("stars", starDAO.findAll());
+            request.getRequestDispatcher("/stars.jsp").forward(request,response);
+        } else if (request.getServletPath().endsWith("/planets.html")) {
+            String sid = request.getParameter("sid");
+            if (sid != null) {
+                Star star = starDAO.find(Integer.parseInt(sid));
+                request.setAttribute("star", star);
+                request.getRequestDispatcher("/planets.jsp").forward(request,response);
+            }
+        }
     }
 }

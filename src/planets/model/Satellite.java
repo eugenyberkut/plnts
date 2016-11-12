@@ -25,6 +25,9 @@ public class Satellite {
     @Column(name = "distance", nullable = true)
     private Integer distance;
 
+    @ManyToOne
+    private Planet planet;
+
     public Satellite(String name, Integer radius, Integer distance) {
         this.name = name;
         this.radius = radius;
@@ -80,5 +83,13 @@ public class Satellite {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, radius, distance);
+    }
+
+    public Planet getPlanet() {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet) {
+        this.planet = planet;
     }
 }
