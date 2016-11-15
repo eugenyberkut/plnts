@@ -20,20 +20,36 @@ public class MainServlet extends HttpServlet {
     StarDAO starDAO;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getServletPath().endsWith("/stars.html")) {
             request.setAttribute("stars", starDAO.findAll());
             request.getRequestDispatcher("/stars.jsp").forward(request,response);
+
         } else if (request.getServletPath().endsWith("/planets.html")) {
             String sid = request.getParameter("sid");
             if (sid != null) {
                 Star star = starDAO.find(Integer.parseInt(sid));
                 request.setAttribute("star", star);
+                request.setAttribute("planets", star.getPlanets());
                 request.getRequestDispatcher("/planets.jsp").forward(request,response);
             }
+
+        } else if (request.getServletPath().endsWith("/addstar.html")) {
+            String starname = request.getParameter("starname");
+            starDAO.create(starname);
+            response.sendRedirect("stars.html");
+
+        }
+
+        else {
+            request.getRequestDispatcher("/default.jsp").forward(request, response);
         }
     }
 }

@@ -13,6 +13,7 @@
     <link href="styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <form action="addstar.html" method="post">
     <table>
         <thead>
         <tr><th>id</th><th>Название</th><th>Планеты</th></tr>
@@ -21,7 +22,9 @@
         <c:forEach items="${stars}" var="star">
             <tr><td>${star.id}</td><td>${star.name}</td><td><a href="planets.html?sid=${star.id}">показать</a></td></tr>
         </c:forEach>
+        <tr><td>new:</td><td><input type="text" name="starname"></td><td><input type="submit" value="Add"></td></tr>
         </tbody>
     </table>
+    </form>
 </body>
 </html>

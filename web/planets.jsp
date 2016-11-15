@@ -19,7 +19,7 @@
         <tr><th>название</th><th>радиус</th><th>атм</th></tr>
         </thead>
         <tbody>
-            <c:forEach items="${star.planets}" var="planet">
+            <c:forEach items="${planets}" var="planet">
                 <tr>
                     <td>${planet.name}</td><td>${planet.radius}</td><td>${planet.atm}</td>
                 </tr>

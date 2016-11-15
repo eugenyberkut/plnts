@@ -22,4 +22,9 @@ public class StarDAO {
     public Star find(int id) {
         return em.find(Star.class, id);
     }
+
+    public void create(String starname) {
+        Star star = new Star(starname);
+        em.persist(star);
+    }
 }
